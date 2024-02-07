@@ -1,1 +1,119 @@
+$text-color: #2f4f4f;
+$extra-text-color: #000;
+$rank-color: #8b0000;
+$rank-bck-color: #fff;
+$hover-bcg-color: #eee;
+$card-width: 200px;
 
+@font-face {
+    font-family: Arial;
+    src: url("./fonts/arial.ttf") format("truetype");
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+}
+
+.people {
+    display: grid;
+    grid-template-columns: repeat(2, $card-width);
+    gap: 40px 30px;
+    justify-content: center;
+    padding: 30px 35px;
+    min-width: 500px;
+
+    @media (min-width: 1000px) {
+        grid-template-columns: repeat(4, $card-width);
+        padding: 30px 55px;
+    }
+}
+
+.person {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 1s;
+
+    &:hover::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: $card-width + 20px;
+        height: 287px;
+        background-color: $hover-bcg-color; 
+        border-radius: 10px; 
+    }
+
+    &:hover .extra {
+        display: block;
+    }
+    
+    &:hover {
+        transform: scale(1.2);  
+    }
+
+    &__img {
+        height: 200px;
+        border-radius: 50%;
+        transition: border-radius 1s;
+
+        &:hover {
+            border-radius: 60px;
+        }
+    }
+
+    &__details {
+        margin-top: 8px;
+        z-index: 2;
+    }
+
+    &__name {
+        color: $text-color;
+        font-size: 20px;    
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    &__sport {
+        color: $extra-text-color;
+    }
+
+    &__photo {
+        position: relative;
+    }
+
+    &__rank {
+        position: absolute;
+        top: 50% - 32 / 4;
+        right: 7px;
+        color: $rank-color;
+        font-size: 16px;
+        font-weight: 700;
+        background-color: $rank-bck-color;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+    }    
+}
+
+.extra {
+    display: none;
+    margin-top: 9px;
+    text-align: center;
+    z-index: 2;
+    
+
+    &__sport,
+    &__pay {
+        color:$extra-text-color;
+        font-size: 18px;
+    }
+}
